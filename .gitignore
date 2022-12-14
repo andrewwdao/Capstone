@@ -5,12 +5,14 @@
 !index.html
 
 # some important files needed to be kept
-!package.json
-!package-lock.json
 !mad.code-workspace
+!LocalDeploy.zip
 
 # ignore csv files
 *.csv
+
+# ignore Build folder
+/Build/*
 
 #ignore my buffer
 **/mad_dep.js

@@ -2,9 +2,6 @@
 Cesium.Ion.defaultAccessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4OGZjZGIwZC03ODlhLTRmNGEtOGMyMC1kZTRlNzI3OGFjNzkiLCJpZCI6NjQxNzYsImlhdCI6MTYyODg2MDY2M30.4Qs7AJNdHE8AA3SG6vJLhZORa6L3ln9oHwuH5NasJfw";
 
-// import * as fs from 'fs'
-// var fs = require("fs");
-
 const viewer = new Cesium.Viewer("cesiumContainer");
 
 const osmBuildingsTileset = Cesium.createOsmBuildings();
@@ -40,7 +37,6 @@ objectsToExclude.push(
   })
 );
 //viewer.zoomTo(viewer.entities);
-var wDat = [];
 
 function check_LOS() {
   for (let i = 0; i < 300; i++) {
@@ -67,14 +63,7 @@ function check_LOS() {
         (intersection.position.y - Tx.y) * (intersection.position.y - Tx.y) +
         (intersection.position.z - Tx.z) * (intersection.position.z - Tx.z);
       ans = Math.sqrt(ans);
-
-      // needs fs - Node.js File system Module
-      //  fs.appendFile('data.txt',ans,function (err) {
-      //     if (err) throw err;
-      //     console.log(ans);
-      //  });
-      wDat = wDat + ans.toString() + "\r\n";
-      //  console.log(ans);
+      console.log(ans);
 
       viewer.entities.add({
         position: intersection.position,
@@ -85,10 +74,6 @@ function check_LOS() {
       });
     }
   }
-
-  var buf = new Blob([wDat], { type: "text/plain;charset=utf-8" });
-  saveAs(buf, "data.txt");
-  console.log("Data saved.");
 }
 
 var handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
